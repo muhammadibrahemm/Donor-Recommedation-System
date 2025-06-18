@@ -16,6 +16,7 @@
 
 const mongoose = require("mongoose");
 const bcryptjs = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const userSchema = new mongoose.Schema(
     {
@@ -37,6 +38,15 @@ const userSchema = new mongoose.Schema(
             type: String,
             required: true,
             enum: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'],
+        },
+        gender: {
+            type: String,
+            required: true,
+            enum: ['male','female','custom']
+        },
+        age: {
+            type: Number,
+            required: true
         },
         city:{
             type: String,
@@ -89,7 +99,36 @@ userSchema.pre("save",async function(next){
         this.password = hash;
         console.log("after hash this.password:",this.password);
     }
-})
+});
+
+userSchema.methods.comparePassword = async function(password){
+    console.log("password:",password);
+    console.log("this.password",this.password);
+    const comparison = await bcryptjs.compare(password, this.password);
+    console.log("comparison",comparison);
+    return comparison;
+} 
+
+// creating access tokens
+userSchema.methods.accessToken = async function(){
+    try {
+        const userAccessToken = jwt.sign(
+            {
+                userID: this._id.toString(),
+                email: this.email,
+                role: this.role
+            },
+            process.env.JWT_SECRET_KEY,
+            {
+                expiresIn:"30d"
+            }
+        );
+        return userAccessToken;
+    } catch (error) {
+        console.log("error in generating the access token:",error);
+        
+    }
+}
 
 const User = mongoose.model('User',userSchema); 
 

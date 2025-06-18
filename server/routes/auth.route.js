@@ -8,7 +8,8 @@ const userController = require('../controllers/user.auth.controller');
 // 1) route for user registration
 router.route('/auth/register').post(userController.userRegister);
 
-
+// 2) route for user login
+router.route('/auth/login').post(userController.userLogin);
 
 
 module.exports = router;

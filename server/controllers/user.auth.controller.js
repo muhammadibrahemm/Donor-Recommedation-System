@@ -56,7 +56,54 @@ const userRegister = async (req, res) => {
 }
 
 // user login
+/**
+ * Login controller
+ * 1) email xyz@gmail.com password 123456
+ * 2) email qqq@gmail.com password qwerty
+ * 3) email ibrahemm@gmail.com password 123456
+ * database qeurry email xyz@gmail.com
+ * password 123456
+ */
 async function userLogin(req,res){
+    const  {email, password} = req.body;
+    try {
+        const isUserExists = await userModel.findOne({email});
+        console.log("isUserExists",isUserExists);
+
+        if(!isUserExists){
+            res.status(400).json({
+                msg: "user email does not exists"
+            })
+        }
+
+        const isPasswordCorrect = await isUserExists.comparePassword(password);
+        console.log("isPasswordCorrect",isPasswordCorrect);
+
+        if(isPasswordCorrect === false){
+            res.status(400).json({
+                msg: "Password is incorrect"
+            });
+        }
+
+        const accessToken = await isUserExists.accessToken();
+        console.log("Acess token:",`Bearer ${accessToken}`);
+        // token generate -> access 
+
+        res.status(200).json({
+            msg: "user has been successfully logged in",
+            statusCode: 200,
+            token: `Bearer ${accessToken}`,
+            id: isUserExists._id,
+        });
+
+    } catch (error) {
+        console.log("error in login controller", error.msg);
+        res.status(500).json(
+            {
+                msg: "Server error in Login Controller"
+            }
+        )
+    }
 
 }
 
