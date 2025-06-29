@@ -7,12 +7,14 @@ const locationSaveToDb = require("./zipcodeConfiguration/importZipcodes");
 app.use(express.json()); // ⬅️ required to parse JSON bodies
 
 const userRoute = require("./routes/auth.route");
+const locationRoute = require("./routes/zipcodes.route");
 const db = require("./utils/db");
 
 // routes
 // api/user/auth/register
 connectServer();
 app.use("/api/user",userRoute);
+app.use("/api/location",locationRoute);
 
 
 const PORT = process.env.PORT;
