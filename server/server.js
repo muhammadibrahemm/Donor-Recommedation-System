@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
+const locationSaveToDb = require("./zipcodeConfiguration/importZipcodes");
 
 // Body parsing middleware (for JSON)
 app.use(express.json()); // ⬅️ required to parse JSON bodies
@@ -20,6 +21,7 @@ async function connectServer(){
       await db();
       app.listen(PORT, () => {
         console.log(`server is started on ${PORT}`)
+        locationSaveToDb();
       })
     } catch (error) {
       console.log("Error has been generated in connecting the server:",error);

@@ -10,8 +10,8 @@
  * 8) role -> a) patient b) donor c) admin string required
  * 9) created at string required timestamp
  * 10) updated at string required timestamp
- * 11) latitudes  
- * 12) longitudes
+ * 11) Location
+ * 12) zipcode
  */
 
 const mongoose = require("mongoose");
@@ -65,19 +65,14 @@ const userSchema = new mongoose.Schema(
             required: true,
             enum: ['patient','donor','admin']
         },
-        /**
-         * latAndLon:{
-         *  lat: 23.7,
-         *  lon : 47.4
-         * }
-         */
-        latAndLon: { 
-            type: {
-              lat: { type: Number },
-              lon: { type: Number }
-            },
-            default: { lat: 0, lon: 0 } 
+        location:{
+            type: String,
+            required: true
         },
+        zipcode: {
+            type: String,
+            required: true
+        }
     },
     {
         timestamps: true
