@@ -7,6 +7,8 @@ import Contact from './pages/Contact/Contact'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
 import Logout from './pages/Logout/Logout'
+import { EmailVerificationCode } from './pages/Verification_Code/Email_Verification_Code'
+import Registration_Email from './pages/Register/Registration_Email'
 
 
 export default function App() {
@@ -35,12 +37,20 @@ export default function App() {
             element: <Login />
           },
           {
-            path: '/register',
-            element: <Register />
-          },
-          {
             path: '/logout',
             element: <Logout />
+          },
+          {
+            path: '/registration/email',
+            element: <Registration_Email />
+          },
+          {
+            path: '/registration/verification-code',
+            element: <EmailVerificationCode />
+          },
+          {
+            path: '/registration/user-data',
+            element: <Register />
           },
         ]
       }

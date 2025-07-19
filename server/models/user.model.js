@@ -65,10 +65,6 @@ const userSchema = new mongoose.Schema(
             required: true,
             enum: ['patient','donor','admin']
         },
-        location:{
-            type: String,
-            required: true
-        },
         zipcode: {
             type: String,
             required: true
