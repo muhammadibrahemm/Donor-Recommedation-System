@@ -4,10 +4,11 @@ const app = express();
 const locationSaveToDb = require("./zipcodeConfiguration/importZipcodes");
 
 // Body parsing middleware (for JSON)
-app.use(express.json()); // ⬅️ required to parse JSON bodies
+app.use(express.json()); //  required to parse JSON bodies
 
 const userRoute = require("./routes/auth.route");
 const locationRoute = require("./routes/zipcodes.route");
+const verificationRoute = require("./routes/email.verification.route")
 const db = require("./utils/db");
 
 // routes
@@ -15,9 +16,10 @@ const db = require("./utils/db");
 connectServer();
 app.use("/api/user",userRoute);
 app.use("/api/location",locationRoute);
-
+app.use("/api/user/registration",verificationRoute);
 
 const PORT = process.env.PORT;
+
 async function connectServer(){
     try {
       await db();

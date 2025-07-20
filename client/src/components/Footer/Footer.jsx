@@ -40,17 +40,50 @@ function Footer() {
           <a href="#" className="hover:underline">Register</a>
         </div>
 
-        {/* Right - Founders + Email */}
+        {/* Right - Team + Emails */}
         <div className="flex flex-col space-y-2 md:items-end">
-          <h3 className="text-lg font-semibold text-red-600">Founders</h3>
-          <span>Muhammad Ibraheem</span>
-          <span>Muhammad Ashiq</span>
-          <span>Aneesa Inayat</span>
-          <div className="mt-4">
-            <h4 className="text-sm font-semibold text-gray-800">Contact Email</h4>
-            <a href="mailto:lifesaver.support@example.com" className="text-red-600 hover:underline text-sm">
-              lifesaver.support@example.com
-            </a>
+          <h3 className="text-lg font-semibold text-red-600">Our Team</h3>
+          <div className="text-sm space-y-4 text-right">
+            <div>
+              <p className="font-semibold">
+                Aneesa Inayat <span className="text-xs text-gray-500">(Founder)</span></p>
+              <a
+                href="mailto:aneesainayat22@gmail.com"
+                className="text-red-600 hover:underline break-all"
+              >
+                aneesainayat22@gmail.com
+              </a>
+            </div>
+            <div>
+              <p className="font-semibold">
+                Muhammad Ashiq <span className="text-xs text-gray-500">(Founder)</span></p>
+              <a
+                href="mailto:muhammadashiq456@gmail.com"
+                className="text-red-600 hover:underline break-all"
+              >
+                muhammadashiq456@gmail.com
+              </a>
+            </div>
+            <div>
+              <p className="font-semibold">
+                Muhammad Ibraheem <span className="text-xs text-gray-500">(Co-Founder)</span>
+              </p>
+              <a
+                href="mailto:muhammadibraheem8567@gmail.com"
+                className="text-red-600 hover:underline break-all"
+              >
+                muhammadibraheem8567@gmail.com
+              </a>
+            </div>
+            <div className="pt-2 border-t border-gray-300">
+              <p className="font-semibold">Support</p>
+              <a
+                href="mailto:support@lifesaver.com"
+                className="text-red-600 hover:underline break-all"
+              >
+                support@lifesaver.com
+              </a>
+            </div>
           </div>
         </div>
       </div>
