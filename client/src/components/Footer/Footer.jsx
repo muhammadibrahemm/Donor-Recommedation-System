@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 function Footer() {
   return (
-    <footer className="bg-gray-100 text-gray-700 py-8 px-4 mt-10">
+    <footer className="bg-gray-100 text-gray-700 py-8 px-4">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Left - Logo + Name */}
         <div className="flex flex-col items-start space-y-2">
@@ -83,7 +83,7 @@ function Footer() {
             Login
           </NavLink>
           <NavLink
-            to={"/registration/email"}
+            to={"/registration"}
             className={({ isActive }) =>
               `block px-3 py-1 rounded transition ${
                 isActive
@@ -96,52 +96,49 @@ function Footer() {
           </NavLink>
         </div>
 
-        {/* Right - Team + Emails */}
-        <div className="flex flex-col space-y-2 md:items-end">
-          <h3 className="text-lg font-semibold text-red-600">Our Team</h3>
-          <div className="text-sm space-y-4 text-right">
-            <div>
-              <p className="font-semibold">
-                Aneesa Inayat <span className="text-xs text-gray-500">(Founder)</span></p>
-              <a
-                href="mailto:aneesainayat22@gmail.com"
-                className="text-red-600 hover:underline break-all"
-              >
-                aneesainayat22@gmail.com
-              </a>
-            </div>
-            <div>
-              <p className="font-semibold">
-                Muhammad Ashiq <span className="text-xs text-gray-500">(Founder)</span></p>
-              <a
-                href="mailto:muhammadashiq456@gmail.com"
-                className="text-red-600 hover:underline break-all"
-              >
-                muhammadashiq456@gmail.com
-              </a>
-            </div>
-            <div>
-              <p className="font-semibold">
-                Muhammad Ibraheem <span className="text-xs text-gray-500">(Co-Founder)</span>
-              </p>
-              <a
-                href="mailto:muhammadibraheem8567@gmail.com"
-                className="text-red-600 hover:underline break-all"
-              >
-                muhammadibraheem8567@gmail.com
-              </a>
-            </div>
-            <div className="pt-2 border-t border-gray-300">
-              <p className="font-semibold">Support</p>
-              <a
-                href="mailto:support@lifesaver.com"
-                className="text-red-600 hover:underline break-all"
-              >
-                support@lifesaver.com
-              </a>
-            </div>
+      {/* Right - Team + Emails */}
+      <div className="flex flex-col space-y-2 md:items-end">
+        <h3 className="text-lg font-semibold text-red-600">Founders</h3>
+        <div className="text-sm space-y-4 text-right">
+          <div>
+            <p className="font-semibold">Muhammad Ibraheem</p>
+            <a
+              href="mailto:muhammadibraheem8567@gmail.com"
+              className="text-red-600 hover:underline break-all"
+            >
+              muhammadibraheem8567@gmail.com
+            </a>
+          </div>
+          <div>
+            <p className="font-semibold">Muhammad Ashiq</p>
+            <a
+              href="mailto:muhammadashiq456@gmail.com"
+              className="text-red-600 hover:underline break-all"
+            >
+              muhammadashiq456@gmail.com
+            </a>
+          </div>
+          <div>
+            <p className="font-semibold">Safiullah</p>
+            <a
+              href="mailto:muhammadashiq456@gmail.com"
+              className="text-red-600 hover:underline break-all"
+            >
+              safiullah456@gmail.com
+            </a>
+          </div>
+          <div className="pt-2 border-t border-gray-300">
+            <p className="font-semibold">Support</p>
+            <a
+              href="mailto:support@lifesaver.com"
+              className="text-red-600 hover:underline break-all"
+            >
+              support@lifesaver.com
+            </a>
           </div>
         </div>
+      </div>
+
       </div>
 
       {/* Bottom - Copyright */}
