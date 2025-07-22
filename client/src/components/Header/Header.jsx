@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import {NavLink} from "react-router-dom";
+
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -16,12 +18,73 @@ function Header() {
 
       {/* Center - Navigation links (hidden on small screens) */}
       <nav className="hidden md:flex space-x-6 font-medium">
-        <a href="#" className="text-red-600 hover:underline">Home</a>
-        <a href="#" className="text-red-600 hover:underline">About Us</a>
-        <a href="#" className="text-red-600 hover:underline">Contact</a>
-        <a href="#" className="text-red-600 hover:underline">Login</a>
-        <a href="#" className="text-red-600 hover:underline">Register</a>
+        <NavLink
+          to={""}
+          className={({ isActive }) =>
+            `block px-3 py-1 rounded transition ${
+              isActive
+                ? 'bg-red-600 text-white px-4'
+                : 'text-red-600 hover:underline hover:bg-red-50'
+            }`
+          }
+        >
+          Home
+        </NavLink>
+
+        <NavLink
+          to={"/about"}
+          className={({ isActive }) =>
+            `block px-3 py-1 rounded transition ${
+              isActive
+                ? 'bg-red-600 text-white px-4'
+                : 'text-red-600 hover:underline hover:bg-red-50'
+            }`
+          }
+        >
+          About Us
+        </NavLink>
+
+        <NavLink
+          to={"/contact"}
+          className={({ isActive }) =>
+            `block px-3 py-1 rounded transition ${
+              isActive
+                ? 'bg-red-600 text-white px-4'
+                : 'text-red-600 hover:underline hover:bg-red-50'
+            }`
+          }
+        >
+          Contact
+        </NavLink>
+
+        <NavLink
+          to={"/login"}
+          className={({ isActive }) =>
+            `block px-3 py-1 rounded transition ${
+              isActive
+                ? 'bg-red-600 text-white px-4'
+                : 'text-red-600 hover:underline hover:bg-red-50'
+            }`
+          }
+        >
+          Login
+        </NavLink>
+
+        <NavLink
+          to={"/registration"}
+          className={({ isActive }) =>
+            `block px-3 py-1 rounded transition ${
+              isActive
+                ? 'bg-red-600 text-white px-4'
+                : 'text-red-600 hover:underline hover:bg-red-50'
+            }`
+          }
+        >
+          Register
+        </NavLink>
       </nav>
+
+
 
       {/* Right - Search Button (centered on small screens) */}
       <div className="hidden md:flex">
@@ -54,7 +117,7 @@ function Header() {
 
       {/* Mobile Menu Dropdown */}
       {menuOpen && (
-        <div className="absolute top-16 left-0 w-full bg-white shadow-md py-4 px-6 flex flex-col space-y-3 md:hidden z-10">
+        <div className="absolute top-16 left-0 w-full bg-white my-4 shadow-md py-2 px-6 flex flex-col space-y-3 md:hidden z-10 text-center">
           <a href="#" className="text-red-600">Home</a>
           <a href="#" className="text-red-600">About Us</a>
           <a href="#" className="text-red-600">Contact</a>

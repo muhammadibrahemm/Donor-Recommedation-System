@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 function Footer() {
   return (
@@ -33,11 +34,66 @@ function Footer() {
         {/* Center - Navigation Links */}
         <div className="flex flex-col space-y-2 md:items-center">
           <h3 className="text-lg font-semibold text-red-600">Quick Links</h3>
-          <a href="#" className="hover:underline">Home</a>
-          <a href="#" className="hover:underline">About Us</a>
-          <a href="#" className="hover:underline">Contact</a>
-          <a href="#" className="hover:underline">Login</a>
-          <a href="#" className="hover:underline">Register</a>
+          <NavLink
+            to={""}
+            className={({ isActive }) =>
+              `block px-3 py-1 rounded transition ${
+                isActive
+                  ? 'bg-red-600 text-white px-4'
+                  : 'text-red-600 hover:underline hover:bg-red-50'
+              }`
+            }
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to={"/about"}
+            className={({ isActive }) =>
+              `block px-3 py-1 rounded transition ${
+                isActive
+                  ? 'bg-red-600 text-white px-4'
+                  : 'text-red-600 hover:underline hover:bg-red-50'
+                }`
+              }
+          >
+            About Us
+          </NavLink>
+          <NavLink
+            to={"/contact"}
+            className={({ isActive }) =>
+              `block px-3 py-1 rounded transition ${
+                isActive
+                  ? 'bg-red-600 text-white px-4'
+                  : 'text-red-600 hover:underline hover:bg-red-50'
+                }`
+              }
+            >
+            Contact
+          </NavLink>
+          <NavLink
+            to={"/login"}
+            className={({ isActive }) =>
+              `block px-3 py-1 rounded transition ${
+                isActive
+                  ? 'bg-red-600 text-white px-4'
+                  : 'text-red-600 hover:underline hover:bg-red-50'
+                }`
+              }
+            >
+            Login
+          </NavLink>
+          <NavLink
+            to={"/registration/email"}
+            className={({ isActive }) =>
+              `block px-3 py-1 rounded transition ${
+                isActive
+                  ? 'bg-red-600 text-white px-4'
+                  : 'text-red-600 hover:underline hover:bg-red-50'
+                }`
+              }
+            >
+            Register
+          </NavLink>
         </div>
 
         {/* Right - Team + Emails */}

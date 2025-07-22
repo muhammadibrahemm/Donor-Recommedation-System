@@ -9,6 +9,7 @@ import Register from './pages/Register/Register'
 import Logout from './pages/Logout/Logout'
 import { EmailVerificationCode } from './pages/Verification_Code/Email_Verification_Code'
 import Registration_Email from './pages/Register/Registration_Email'
+import RegisterLayout from './pages/Register/RegisterLayout'
 
 
 export default function App() {
@@ -41,16 +42,22 @@ export default function App() {
             element: <Logout />
           },
           {
-            path: '/registration/email',
-            element: <Registration_Email />
-          },
-          {
-            path: '/registration/verification-code',
-            element: <EmailVerificationCode />
-          },
-          {
-            path: '/registration/user-data',
-            element: <Register />
+            path: '/registration',
+            element: <RegisterLayout />,
+            children: [
+              {
+                path: '',
+                element: <Registration_Email />
+              },
+              {
+                path: 'verification-code',
+                element: <EmailVerificationCode />
+              },
+              {
+                path: 'user-data',
+                element: <Register />
+              }
+            ]
           },
         ]
       }
