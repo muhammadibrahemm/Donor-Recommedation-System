@@ -2,6 +2,15 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const locationSaveToDb = require("./zipcodeConfiguration/importZipcodes");
+const cors = require('cors');
+
+const corsOptions = {
+  origin: "http://localhost:5173",
+  method: "GET, POST, PUT, PATCH, DELETE, PATCH, HEAD",
+  credential:true
+}
+
+app.use(cors(corsOptions))
 
 // Body parsing middleware (for JSON)
 app.use(express.json()); //  required to parse JSON bodies

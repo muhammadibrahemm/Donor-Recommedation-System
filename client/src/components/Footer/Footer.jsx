@@ -119,12 +119,12 @@ function Footer() {
             </a>
           </div>
           <div>
-            <p className="font-semibold">Safiullah</p>
+            <p className="font-semibold">Aneesa Inayat</p>
             <a
               href="mailto:muhammadashiq456@gmail.com"
               className="text-red-600 hover:underline break-all"
             >
-              safiullah456@gmail.com
+              aneesainayat22@gmail.com
             </a>
           </div>
           <div className="pt-2 border-t border-gray-300">

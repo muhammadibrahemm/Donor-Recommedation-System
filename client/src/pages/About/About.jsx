@@ -45,7 +45,7 @@ function About() {
           </div>
           <h3 className="text-xl font-semibold text-center text-red-600 mb-2">Our Team</h3>
           <p className="text-gray-600 text-center">
-            Founded by Muhammad Ibraheem, Safiullah and Muhammad Ashiq, our passionate team is driven by a mission to help humanity.
+            Founded by Muhammad Ibraheem,Muhammad Ashiq, and Aneesa Inayat our passionate team is driven by a mission to help humanity.
           </p>
         </div>
 

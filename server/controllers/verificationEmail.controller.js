@@ -64,7 +64,7 @@ const verificationByEmail = async (req, res) => {
                     console.log("Error sending already registered email:", error);
                     return res.status(500).json({ message: 'Failed to send email' });
                 }
-                return res.status(200).json({ message: 'User already exists. Email sent to user.' });
+                return res.status(200).json({ status:400, message: 'User already exists. Email sent to user.' });
             });
         } else {
             // New user: Send verification code
@@ -130,6 +130,7 @@ const verificationByEmail = async (req, res) => {
                     return res.status(500).json({ message: 'Failed to send email' });
                 }
                 return res.status(200).json({ 
+                    status:200,
                     message: 'Verification code sent successfully', 
                     code: verificationCode, 
                     email: registrationEmail 
