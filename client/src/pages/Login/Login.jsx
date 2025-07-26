@@ -1,4 +1,69 @@
+import React, { useState, useEffect } from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import { sendLoginDataUsingRedux } from '../../features/login/loginSlice';
+import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
+import 'react-toastify/dist/ReactToastify.css';
+
+
 function Login() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [userLoginData,setUserLoginData] = useState({
+      email: "",
+      password: ""
+    })
+
+    const handleDataChange = (e) => {
+      const {name,value} = e.target;
+      setUserLoginData((prev) => (
+        {
+          ...prev,[name]:value
+        }
+      ))
+    }
+
+    const handleLoginFormSubmit = async (e) => {
+      e.preventDefault();
+      console.log(userLoginData)
+      setUserLoginData({
+        email:"",
+        password:""
+      })
+      const res = await dispatch(sendLoginDataUsingRedux(userLoginData));
+      console.log("res.payload in login:",res.payload)
+      
+      const { msg, status,id } = res.payload;
+
+      if (status === 400) {
+        toast.error(msg);
+        return;
+      }
+
+      if (status === 200) {
+        toast.success(msg);
+
+        // Redirect based on user role
+        const role = localStorage.getItem("userRole");
+        const id = localStorage.getItem("userId");
+
+        console.log("Routing")
+        if (role === "admin") {
+          navigate(`/admin/${id}/dashboard/`);
+        } else if (role === "patient") {
+          navigate(`/patient/${id}/dashboard/`);
+        } else if (role === "donor") {
+          console.log("i am donor")
+          navigate(`/donor/${id}/dashboard/`);
+        } else {
+          navigate("/"); 
+        }
+        return;
+      }
+}
+
+    
+
     return (
       <div className="flex flex-col min-h-screen bg-gray-100">
         {/* Main content - Login section */}
@@ -25,7 +90,7 @@ function Login() {
             {/* Right - Login Form */}
             <div className="w-full md:w-1/2">
               <h2 className="text-2xl font-bold text-center text-red-600 mb-6">Login to Your Account</h2>
-              <form className="space-y-5">
+              <form className="space-y-5" onSubmit={handleLoginFormSubmit}>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
                     Email
@@ -35,6 +100,9 @@ function Login() {
                     id="email"
                     className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"
                     placeholder="Enter your email"
+                    name='email'
+                    value={userLoginData.email}
+                    onChange={(e) => handleDataChange(e)}
                   />
                 </div>
   
@@ -47,6 +115,9 @@ function Login() {
                     id="password"
                     className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"
                     placeholder="Enter your password"
+                    name='password'
+                    value={userLoginData.password}
+                    onChange={(e) => handleDataChange(e)}
                   />
                 </div>
   

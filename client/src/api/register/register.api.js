@@ -31,3 +31,15 @@ export const sendRegisterVerificationCodeByEmail = async(data)=>{
         status
     };    
 }
+
+export const sendUserDataToBackend = async(data) => {
+    const res = await api.post("/auth/register", JSON.stringify(data),{
+        headers:{
+            "Content-Type": "application/json"
+        }
+    });
+
+    console.log("Inside the register api user data response",res.data);
+
+    return res.data;
+}

@@ -1,10 +1,16 @@
 import React, { useState } from "react";
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
 
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-
+  const navigate = useNavigate();
+  const {role, token,id} = useSelector((state) => state.loginLogoutSlice)
+  console.log(role, token)
+  const handleDonorsBtn = () => {
+    navigate('/search/Donors')
+  }
   return (
     <header className="bg-white shadow-md px-4 py-3 flex items-center justify-between md:justify-around">
       {/* Left - Logo and Name */}
@@ -30,6 +36,47 @@ function Header() {
         >
           Home
         </NavLink>
+
+        {token && role === "admin" && (
+            <NavLink to={`/admin/${id}/dashboard`}
+            className={({ isActive }) =>
+              `block px-3 py-1 rounded transition ${
+                isActive
+                  ? 'bg-red-600 text-white px-4'
+                  : 'text-red-600 hover:underline hover:bg-red-50'
+              }`
+            }
+            >
+            Admin Dashboard
+          </NavLink>
+        )}
+
+        {token && role === "patient" && (
+          <NavLink to={`/patient/${id}/dashboard`} 
+          className={({ isActive }) =>
+            `block px-3 py-1 rounded transition ${
+              isActive
+                ? 'bg-red-600 text-white px-4'
+                : 'text-red-600 hover:underline hover:bg-red-50'
+            }`
+          }>
+            Patient Dashboard
+          </NavLink>
+        )}
+
+        {token && role === "donor" && (
+          <NavLink to={`/donor/${id}/dashboard`} 
+          className={({ isActive }) =>
+            `block px-3 py-1 rounded transition ${
+              isActive
+                ? 'bg-red-600 text-white px-4'
+                : 'text-red-600 hover:underline hover:bg-red-50'
+            }`
+          }
+          >
+            Donor Dashboard
+          </NavLink>
+        )}
 
         <NavLink
           to={"/about"}
@@ -57,7 +104,9 @@ function Header() {
           Contact
         </NavLink>
 
-        <NavLink
+        {
+          !token ? (
+            <NavLink
           to={"/login"}
           className={({ isActive }) =>
             `block px-3 py-1 rounded transition ${
@@ -70,8 +119,8 @@ function Header() {
           Login
         </NavLink>
 
-        <NavLink
-          to={"/registration"}
+          ): <NavLink
+          to={"/logout"}
           className={({ isActive }) =>
             `block px-3 py-1 rounded transition ${
               isActive
@@ -80,15 +129,35 @@ function Header() {
             }`
           }
         >
-          Register
+          Logout
         </NavLink>
+        }
+
+
+        {
+        !token && (
+          <NavLink
+            to="/register"
+            className={({ isActive }) =>
+              `block px-3 py-1 rounded transition ${
+                isActive
+                  ? 'bg-red-600 text-white px-4'
+                  : 'text-red-600 hover:underline hover:bg-red-50'
+              }`
+            }
+          >
+            Register
+          </NavLink>
+        )
+        }
+
       </nav>
 
 
 
       {/* Right - Search Button (centered on small screens) */}
       <div className="hidden md:flex">
-        <button className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition duration-300">
+        <button className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition duration-300" onClick={handleDonorsBtn}>
           Search for Donors
         </button>
       </div>
@@ -107,7 +176,7 @@ function Header() {
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
             fill="none"
-            viewBox="0 0 24 24"
+            viewBox="0 0 24 24" 
             stroke="currentColor"
           >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
